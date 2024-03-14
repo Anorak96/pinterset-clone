@@ -8,11 +8,16 @@ class Tag(models.Model):
         return self.tag
     
 class Pin(models.Model):
-    profile = models.ForeignKey(User, on_delete=models.DO_NOTHING,  related_name="profile_post")
+    profile = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name="profile_post")
     pin = models.ImageField(upload_to='pins')
-    tag = models.ManyToManyField(Tag)
+    pin_tag = models.ManyToManyField(Tag, related_name="profile_post")
     created = models.DateTimeField(auto_now_add=True)
     description = models.TextField(max_length=200, null=True, blank=True)
 
     def __str__(self):
-        return self.description[:10]
+        return str(self.id)
+
+class Board(models.Model):
+    name = models.CharField(max_length=20)
+    profile = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name="board_profile")
+    pin = models.ManyToManyField(Pin, related_name="board_pin")
