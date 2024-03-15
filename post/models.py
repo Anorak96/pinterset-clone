@@ -7,10 +7,13 @@ class Tag(models.Model):
     def __str__(self):
         return self.tag
     
+    def pin_no(self):
+        return self.post_tag.count()
+    
 class Pin(models.Model):
     profile = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name="profile_post")
     pin = models.ImageField(upload_to='pins')
-    pin_tag = models.ManyToManyField(Tag, related_name="profile_post")
+    pin_tag = models.ManyToManyField(Tag, related_name="post_tag", blank=True)
     created = models.DateTimeField(auto_now_add=True)
     description = models.TextField(max_length=200, null=True, blank=True)
 

@@ -5,6 +5,6 @@ app_name = 'post'
 urlpatterns = [
     path('', views.index, name='index'),
     path('<pk>', views.detail, name='detail'),
-    path('tag/<pk>', views.tag, name='tag'),
+    path('tag/<tag>', views.tag, name='tag'),
     path('board/<name>', views.board, name='board')
 ]   

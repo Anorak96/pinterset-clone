@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% block title %} - Home{% endblock %}
 
 {% block body %}
     <main role="main">
@@ -14,18 +15,15 @@
 						<ul class="navbar-nav">
 							{% for tag in tags %}
 								<li class="nav-item">
-									<a class="nav-link" href="#">{{tag.tag}}</a>
+									<a class="nav-link" href="{% url 'post:tag' tag=tag.pk %}">{{tag.tag}}</a>
 								</li>
 							{% endfor %}
 							<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More</a>
 							<div class="dropdown-menu shadow-lg" aria-labelledby="dropdown01">
-								<a class="dropdown-item" href="#">Astronomy</a>
-								<a class="dropdown-item" href="#">Nature</a>
-								<a class="dropdown-item" href="#">Cooking</a>
-								<a class="dropdown-item" href="#">Fashion</a>
-								<a class="dropdown-item" href="#">Wellness</a>
-								<a class="dropdown-item" href="#">Dieting</a>
+								{% for tag in other_tags %}
+									<a class="dropdown-item" href="{% url 'post:tag' tag=tag.pk %}">{{tag.tag}}</a>
+								{% endfor %}
 							</div>
 							</li>
 						</ul>
