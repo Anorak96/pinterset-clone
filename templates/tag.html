@@ -14,8 +14,12 @@
 								<div class="overlay">
 									<h2 class="card-title title">{{tagg.pin.description}}</h2>
 									<div class="more">
-										<a href="{% url 'post:tag' tagg.pk %}">
-										<i class="fa-brands fa-arrow-circle-o-right" aria-hidden="true"></i> More </a>
+										<a href="">
+											<i class="fa-regular fa-bookmark"></i>
+										</a>
+										<a href="{% url 'post:detail' tagg.pk %}">
+											<i class="fa-solid fa-arrow-right"></i> More 
+										</a>
 									</div>
 								</div>
 							</div>
